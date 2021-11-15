@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "928645878440",
+    "project_id": "indonav-47ded",
+    "storage_bucket": "indonav-47ded.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928645878440:android:af85a11fa7ef221697689d",
+        "android_client_info": {
+          "package_name": "com.example.indonav"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928645878440-sni56oti3trb0firr906deqpbsg6cjh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBACqBZXliqubYunFpQy39vIXyIrAspg78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928645878440-sni56oti3trb0firr906deqpbsg6cjh4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

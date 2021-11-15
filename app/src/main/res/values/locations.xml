@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="landmarks">
+        <item name="AH 7">AH 7:AH 7 Hostel</item>
+    </string-array>
+    <string-array name="destinations">
+        <item>Block A</item>
+        <item>Block B</item>
+        <item>Block C</item>
+        <item>Block D</item>
+        <item>Block E</item>
+    </string-array>
+</resources>
