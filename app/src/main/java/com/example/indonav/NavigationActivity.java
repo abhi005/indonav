@@ -118,7 +118,9 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
         sensorManager.registerListener(NavigationActivity.this, acceleroMeter, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(NavigationActivity.this, magnetoMeter, SensorManager.SENSOR_DELAY_UI);
         // setup instruction based on source and destination
-        instructionList.add(new Path(1, 10));
+        instructionList.add(new Path(46, 66));
+        instructionList.add(new Path(134, 1));
+        instructionList.add(new Path(134, 17));
         // 1 - north, 2 - right, 3 - south, 4 - left
         instructionCount = instructionList.size();
     }
@@ -306,12 +308,13 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
         if(instructionIndex < instructionCount) {
             dir = instructionList.get(instructionIndex).getDir();
         }
-
+        dir = getRange(dir);
         if(instructionIndex < instructionCount && stepCount >= instructionList.get(instructionIndex).getSteps()) {
             instructionIndex++;
             stepCount = 0;
             if(instructionIndex == instructionCount) {
                 sensorManager.unregisterListener(NavigationActivity.this);
+                Toast.makeText(NavigationActivity.this, "reached destination", Toast.LENGTH_SHORT).show();
                 Log.d("direction", "reached destination");
                 finish();
                 // next activity
@@ -319,21 +322,15 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
             }
         }
         if(stepCount == 0) {
-            if(dir == 1 && getRange(absoluteDir) == 1 && cross != 1) {
+            int userDir = getRange(absoluteDir);
+            if(dir == userDir && cross != 1) {
                 Log.d("direction", "go straight");
                 addObject(Uri.parse("Arrow_straight_Zneg.sfb"));
-            } else if(dir == 3 && getRange(absoluteDir) == 3 && cross != 1) {
-                Log.d("direction", "go straight");
-                addObject(Uri.parse("Arrow_straight_Zneg.sfb"));
-            } else if(dir == 1 && getRange(absoluteDir) == 3 && cross != 1) {
-                Log.d("direction", "go reverse");
-                addObject(Uri.parse("Arrow_straight_Zpos.sfb"));
-            } else if(dir == 3 && getRange(absoluteDir) == 1 && cross != 1) {
-                Log.d("direction", "go reverse");
-                addObject(Uri.parse("Arrow_straight_Zpos.sfb"));
-            } else if(dir == 1 || dir == 3) {
-                Log.d("direction", "go straight");
-                addObject(Uri.parse("Arrow_straight_Zneg.sfb"));
+            } else {
+                if(dir == 2 && userDir == 1) {
+                    Log.d("direction", "go straight");
+                    addObject(Uri.parse("Arrow_Right_Zneg.sfb"));
+                }
             }
         }
         stepCount++;

@@ -2,9 +2,10 @@
 <resources>
     <string-array name="landmarks">
         <item name="AH 7">AH 7:AH 7 Hostel</item>
+        <item name="221">221:AH7 221</item>
     </string-array>
     <string-array name="destinations">
-        <item>Block A</item>
+        <item>AH7 xyz</item>
         <item>Block B</item>
         <item>Block C</item>
         <item>Block D</item>
