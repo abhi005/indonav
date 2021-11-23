@@ -66,8 +66,10 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
     private float[] lastMagnetometer = new float[3];
     private boolean lastAccelerometerSet = false;
     private boolean lLastMagnetometerSet = false;
+    private boolean arrowPlaced = false;
     private int rotation = 0;
     private int stepCount = 0;
+    private int totalStepCount = 0;
     private int cross = 0;
     private int instructionIndex = 0;
     private int instructionCount = 0;
@@ -117,10 +119,13 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
         stepCount = 0;
         sensorManager.registerListener(NavigationActivity.this, acceleroMeter, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(NavigationActivity.this, magnetoMeter, SensorManager.SENSOR_DELAY_UI);
-        // setup instruction based on source and destination
-        instructionList.add(new Path(46, 66));
-        instructionList.add(new Path(134, 1));
-        instructionList.add(new Path(134, 17));
+//        setup instruction based on source and destination
+//        instructionList.add(new Path(46, 66));
+//        instructionList.add(new Path(134, 1));
+//        instructionList.add(new Path(134, 17));
+        instructionList.add(new Path(46, 60));
+        instructionList.add(new Path(134, 4));
+        instructionList.add(new Path(134, 9));
         // 1 - north, 2 - right, 3 - south, 4 - left
         instructionCount = instructionList.size();
     }
@@ -304,41 +309,53 @@ public class NavigationActivity extends AppCompatActivity implements StepListner
 //            dirAll = instructionList.get(instructionIndex).getDir();
 //        }
 //
-        int dir = 99;
-        if(instructionIndex < instructionCount) {
-            dir = instructionList.get(instructionIndex).getDir();
-        }
-        dir = getRange(dir);
+//        int dir = 99;
+//        if(instructionIndex < instructionCount) {
+//            dir = instructionList.get(instructionIndex).getDir();
+//        }
+//        dir = getRange(dir);
         if(instructionIndex < instructionCount && stepCount >= instructionList.get(instructionIndex).getSteps()) {
             instructionIndex++;
             stepCount = 0;
+            arrowPlaced = false;
             if(instructionIndex == instructionCount) {
                 sensorManager.unregisterListener(NavigationActivity.this);
                 Toast.makeText(NavigationActivity.this, "reached destination", Toast.LENGTH_SHORT).show();
                 Log.d("direction", "reached destination");
-                finish();
+                // finish();
                 // next activity
                 // reached detination
             }
         }
-        if(stepCount == 0) {
-            int userDir = getRange(absoluteDir);
-            if(dir == userDir && cross != 1) {
+        if(!arrowPlaced) {
+            if(instructionIndex == 0 || instructionIndex == 2) {
+                Toast.makeText(NavigationActivity.this, "Go Straight", Toast.LENGTH_SHORT).show();
                 Log.d("direction", "go straight");
                 addObject(Uri.parse("Arrow_straight_Zneg.sfb"));
-            } else {
-                if(dir == 2 && userDir == 1) {
-                    Log.d("direction", "go straight");
-                    addObject(Uri.parse("Arrow_Right_Zneg.sfb"));
-                }
+            } else if(instructionIndex == 1) {
+                Toast.makeText(NavigationActivity.this, "Turn Right", Toast.LENGTH_SHORT).show();
+                Log.d("direction", "go right");
+                addObject(Uri.parse("Arrow_Right_Zneg.sfb"));
             }
+            arrowPlaced = true;
+//            int userDir = getRange(absoluteDir);
+//            if(dir == userDir) {
+//                Log.d("direction", "go straight");
+//                addObject(Uri.parse("Arrow_straight_Zneg.sfb"));
+//            } else {
+//                if(dir == 2 && userDir == 1) {
+//                    Log.d("direction", "go straight");
+//                    addObject(Uri.parse("Arrow_Right_Zneg.sfb"));
+//                }
+//            }
         }
         stepCount++;
+        totalStepCount++;
         Log.d("step", "step count " + stepCount);
 
         TextView tv = findViewById(R.id.step_count_tv);
         if (tv != null) {
-            tv.setText(String.valueOf(stepCount));
+            tv.setText(String.valueOf(totalStepCount));
         }
     }
 

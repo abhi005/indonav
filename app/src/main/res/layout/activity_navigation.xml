@@ -21,7 +21,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv3"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
@@ -69,6 +69,7 @@
                     android:id="@+id/source_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="132dp"
                     android:text="Block A"
                     android:textColor="@color/dark_blue"
                     android:textSize="20sp"
@@ -125,7 +126,9 @@
                 <TextView
                     android:id="@+id/step_count_tv"
                     android:text="0"
+                    android:gravity="center"
                     android:textSize="36sp"
+                    android:minWidth="48dp"
                     android:textColor="@color/off_white"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"

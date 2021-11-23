@@ -5,10 +5,10 @@
         <item name="221">221:AH7 221</item>
     </string-array>
     <string-array name="destinations">
-        <item>AH7 xyz</item>
-        <item>Block B</item>
-        <item>Block C</item>
-        <item>Block D</item>
-        <item>Block E</item>
+        <item>AH7 244</item>
+        <item>AH7 240</item>
+        <item>AH7 236</item>
+        <item>AH7 235</item>
+        <item>AH7 234</item>
     </string-array>
 </resources>

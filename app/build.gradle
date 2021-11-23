@@ -63,3 +63,8 @@ sceneform.asset('sampledata/Arrow_straight_Zneg.obj',
         'default',
         'sampledata/Arrow_straight_Zneg.sfa',
         'src/main/assets/Arrow_straight_Zneg')
+
+sceneform.asset('sampledata/Arrow_Right_Zneg.obj',
+        'default',
+        'sampledata/Arrow_Right_Zneg.sfa',
+        'src/main/assets/Arrow_Right_Zneg')
